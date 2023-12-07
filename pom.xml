@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.activeviam</groupId>
+	<artifactId>java-api-migration-tool</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<name>Java API Migration Tool</name>
+	<packaging>jar</packaging>
+
+	<organization>
+		<name>ActiveViam</name>
+		<url>http://www.activeviam.com</url>
+	</organization>
+
+	<properties>
+		<java.compileVersion>17</java.compileVersion>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.jgit</groupId>
+			<artifactId>org.eclipse.jgit</artifactId>
+			<version>6.7.0.202309050840-r</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.9.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Plugin to format code -->
+				<plugin>
+					<groupId>net.revelc.code.formatter</groupId>
+					<artifactId>formatter-maven-plugin</artifactId>
+					<version>2.23.0</version>
+					<configuration>
+						<configFile>ActiveViamCodeFormatter.xml</configFile>
+						<encoding>UTF-8</encoding>
+						<compilerSource>${java.compileVersion}</compilerSource>
+						<compilerCompliance>${java.compileVersion}</compilerCompliance>
+						<compilerTargetPlatform>${java.compileVersion}</compilerTargetPlatform>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>com.activeviam.formatting</groupId>
+							<artifactId>formatting</artifactId>
+							<version>6.0.9</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>net.revelc.code</groupId>
+					<artifactId>impsort-maven-plugin</artifactId>
+					<version>1.8.0</version>
+					<configuration>
+						<removeUnused>true</removeUnused>
+						<compliance>${java.compileVersion}</compliance>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.5.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<includes>
+									<include>org.eclipse.jgit:org.eclipse.jgit</include>
+									<include>org.slf4j:slf4j-api</include>
+								</includes>
+							</artifactSet>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Validate format of all files in src/main/java and src/test/java -->
+			<plugin>
+				<groupId>net.revelc.code.formatter</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>validate-formatting</id>
+						<goals>
+							<goal>validate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>net.revelc.code</groupId>
+				<artifactId>impsort-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>validate-imports</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- Format all files in src/main/java, src/test/java -->
+		<profile>
+			<id>format</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>net.revelc.code</groupId>
+						<artifactId>impsort-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>validate-imports</id>
+								<phase>none</phase>
+							</execution>
+							<execution>
+								<id>sort-imports</id>
+								<goals>
+									<goal>sort</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>net.revelc.code.formatter</groupId>
+						<artifactId>formatter-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>validate-formatting</id>
+								<phase>none</phase>
+							</execution>
+							<execution>
+								<id>format-files</id>
+								<goals>
+									<goal>format</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
