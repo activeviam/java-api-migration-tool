@@ -14,7 +14,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIf;
 
-public class TestMappingGenerator {
+class TestMappingGenerator {
 
 	private static final String REPOSITORY = "C:/Users/elie/eclipse-workspace-6.1/activepivot";
 

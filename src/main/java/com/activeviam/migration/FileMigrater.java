@@ -44,14 +44,14 @@ public class FileMigrater {
 	public static MigrationInfo migrateFiles(final List<Path> files, final Map<String, String> mapping) {
 		final FileMigrater migrater = new FileMigrater(files, mapping);
 
-		final Duration executionTime = MigrationUtils.runAndGetTime(() -> migrater.migrateFiles());
+		final Duration executionTime = MigrationUtils.runAndGetTime(migrater::migrateFiles);
 		migrater.migrationInfo.setExecutionTime(executionTime);
 
 		return migrater.migrationInfo;
 	}
 
 	private void migrateFiles() {
-		this.files.forEach(filePath -> migrateFile(filePath));
+		this.files.forEach(this::migrateFile);
 	}
 
 	private Pattern getOrCreatePattern() {

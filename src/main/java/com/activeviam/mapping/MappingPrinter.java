@@ -42,7 +42,7 @@ public class MappingPrinter {
 		NO_PRINT,
 		PRINT_SUMMARY,
 		PRINT_WITH_LIMIT,
-		FULL_PRINT;
+		FULL_PRINT
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class MappingPrinter {
 	}
 
 	private static void printSummary(final MappingInfo mappingInfo) {
-		LOGGER.log(Level.INFO, () -> mappingInfo.toString());
+		LOGGER.log(Level.INFO, mappingInfo::toString);
 	}
 
 	private static void printMappingValues(final Map<String, String> mapping, final int limit) {

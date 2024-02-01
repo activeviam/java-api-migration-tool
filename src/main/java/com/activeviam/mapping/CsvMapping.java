@@ -30,6 +30,9 @@ public class CsvMapping {
 	/** The name format of the created csv files. */
 	private static final String FILE_NAME_TEMPLATE = "%s_to_%s.csv";
 
+	private CsvMapping() {
+	}
+
 	/**
 	 * Creates a csv file from the given {@link Mapping} in {@value #OUTPUT_DIRECTORY}{@code /repositoryName}
 	 * directory.

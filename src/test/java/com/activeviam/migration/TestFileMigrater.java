@@ -18,7 +18,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestFileMigrater {
+class TestFileMigrater {
 
 	private static final String TEST_DIRECTORY = "src/test/resources/migration";
 
