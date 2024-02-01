@@ -85,7 +85,7 @@ public class MigrationApplication {
 		final MigrationInfo migrationInfo = FileMigrater.migrateFiles(files, mapping);
 
 		// Print info about the migration
-		LOGGER.log(Level.INFO, () -> migrationInfo.toString());
+		LOGGER.log(Level.INFO, migrationInfo::toString);
 
 		System.exit(0);
 	}

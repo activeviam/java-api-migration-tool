@@ -23,7 +23,7 @@ public class MappingInfo {
 
 	private final String currentVersion;
 
-	private final String tagretVersion;
+	private final String targetVersion;
 
 	private Duration executionTime;
 
@@ -32,10 +32,10 @@ public class MappingInfo {
 	/**
 	 * Constructor.
 	 */
-	MappingInfo(final String repositoryName, final String currentVersion, final String tagretVersion) {
+	MappingInfo(final String repositoryName, final String currentVersion, final String targetVersion) {
 		this.repositoryName = repositoryName;
 		this.currentVersion = currentVersion;
-		this.tagretVersion = tagretVersion;
+		this.targetVersion = targetVersion;
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class MappingInfo {
 	 * Returns the target version of the migration.
 	 */
 	public String getTargetVersion() {
-		return this.tagretVersion;
+		return this.targetVersion;
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class MappingInfo {
 				.append("From ")
 				.append(this.currentVersion)
 				.append(" to ")
-				.append(this.tagretVersion)
+				.append(this.targetVersion)
 				.append(MigrationUtils.LINE_SEPARATOR)
 				.append("Total size: ")
 				.append(getTotalMappingSize())

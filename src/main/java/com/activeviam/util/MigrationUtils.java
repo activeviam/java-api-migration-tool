@@ -59,7 +59,7 @@ public class MigrationUtils {
 	}
 
 	/**
-	 * Retrieves all the java files inside the given directory and its sub-directories.
+	 * Retrieves all the java files inside the given directory and its subdirectories.
 	 */
 	public static List<Path> getAllJavaFiles(final String directory) {
 		try {
@@ -121,7 +121,7 @@ public class MigrationUtils {
 	 * @author ActiveViam
 	 */
 	@FunctionalInterface
-	public static interface IWriteInstructions {
+	public interface IWriteInstructions {
 
 		void accept(FileWriter t) throws IOException;
 
