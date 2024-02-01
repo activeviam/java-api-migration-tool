@@ -60,13 +60,25 @@ public class MappingGenerator {
 	public static Mapping generateMapping(
 			final String repositoryPath,
 			final String currentVersion,
-			final String targetVersion) {
+			final String targetVersion,
+			final Map<String, String> hardcodedMapping) {
 		final MappingGenerator generator = new MappingGenerator(repositoryPath, currentVersion, targetVersion);
 
-		final Duration executionTime = MigrationUtils.runAndGetTime(generator::computeMapping);
+		final Duration executionTime =
+				MigrationUtils.runAndGetTime(() -> generator.computeMapping(hardcodedMapping));
 		generator.mappingInfo.setExecutionTime(executionTime);
 
 		return generator.mapping;
+	}
+
+	/**
+	 * Generates a {@link Mapping} from the given repository between the two given versions.
+	 */
+	public static Mapping generateMapping(
+			final String repositoryPath,
+			final String currentVersion,
+			final String targetVersion) {
+		return generateMapping(repositoryPath, currentVersion, targetVersion, Map.of());
 	}
 
 	private MappingGenerator(
@@ -113,10 +125,11 @@ public class MappingGenerator {
 		}
 	}
 
-	private void computeMapping() {
+	private void computeMapping(final Map<String, String> hardcodedMapping) {
 		final List<DiffEntry> diffEntries = getDiffEntries();
 		final Map<String, String> mapping = computeMap(diffEntries);
 		final Map<String, String> postProcessedMapping = postProcessMapping(mapping);
+		postProcessedMapping.putAll(hardcodedMapping);
 		this.mapping = new Mapping(postProcessedMapping, this.mappingInfo);
 	}
 

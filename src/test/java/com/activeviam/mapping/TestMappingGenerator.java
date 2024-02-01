@@ -16,7 +16,8 @@ import org.junit.jupiter.api.condition.DisabledIf;
 
 class TestMappingGenerator {
 
-	private static final String REPOSITORY = "C:/Users/elie/eclipse-workspace-6.1/activepivot";
+	// private static final String REPOSITORY = "C:/Users/elie/eclipse-workspace-6.1/activepivot";
+	private static final String REPOSITORY = "~/Documents/Code/activepivot";
 
 	@Test
 	@DisabledIf(

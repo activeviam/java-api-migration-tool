@@ -7,11 +7,14 @@
 
 package com.activeviam.mapping.app;
 
+import static com.activeviam.mapping.app.JsonUtils.loadMappingFromJson;
+
 import com.activeviam.mapping.CsvMapping;
 import com.activeviam.mapping.Mapping;
 import com.activeviam.mapping.MappingGenerator;
 import com.activeviam.mapping.MappingPrinter;
 import com.activeviam.migration.app.MigrationApplication;
+import java.util.Map;
 
 /**
  * Launcher class to create a csv file representing a {@link Mapping} from a local git repository between a current
@@ -20,6 +23,8 @@ import com.activeviam.migration.app.MigrationApplication;
  * @author ActiveViam
  */
 public class MappingApplication {
+
+	private static final String HARDCODED_MAPPING = "hardcoded_mapping.json";
 
 	/**
 	 * Generates the mapping csv file.
@@ -44,8 +49,11 @@ public class MappingApplication {
 			throw new IllegalArgumentException("Wrong number of arguments: " + args.length + ", expected 1 or 3.");
 		}
 
+		final Map<String, String> hardcodedMapping = loadHardcodedMapping();
+
 		// Create the mapping
-		final Mapping mapping = MappingGenerator.generateMapping(repositoryPath, currentVersion, targetVersion);
+		final Mapping mapping =
+				MappingGenerator.generateMapping(repositoryPath, currentVersion, targetVersion, hardcodedMapping);
 
 		// Print the mapping
 		MappingPrinter.printMapping(mapping);
@@ -54,6 +62,10 @@ public class MappingApplication {
 		CsvMapping.createFileFromMapping(mapping);
 
 		System.exit(0);
+	}
+
+	private static Map<String, String> loadHardcodedMapping() {
+		return loadMappingFromJson(HARDCODED_MAPPING);
 	}
 
 }
