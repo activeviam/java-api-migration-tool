@@ -28,7 +28,7 @@ public class JsonUtils {
 	}
 
 	private static Map<String, String> jsonStreamToMap(final InputStream stream) throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
+		final ObjectMapper mapper = new ObjectMapper();
 		return (Map<String, String>) mapper.readValue(stream, HashMap.class);
 	}
 
