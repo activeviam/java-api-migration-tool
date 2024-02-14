@@ -1,3 +1,3 @@
 {
-  // TODO: fill this file
+  "com.qfs.msg.impl.QfsResultSetRow": "com.activeviam.source.jdbc.api.impl.ResultSetRow"
 }
