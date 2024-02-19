@@ -1,3 +1,10 @@
 {
-  "com.qfs.msg.impl.QfsResultSetRow": "com.activeviam.source.jdbc.api.impl.ResultSetRow"
+  "com.qfs.msg.impl.QfsResultSetRow": "com.activeviam.source.jdbc.api.impl.ResultSetRow",
+  "com.qfs.msg.jdbc.IJDBCSource": "com.activeviam.source.jdbc.api.IJdbcSource",
+  "com.qfs.source.impl.JDBCMessageChannelFactory": "com.activeviam.source.jdbc.api.JdbcMessageChannelFactory",
+  "com.qfs.msg.jdbc.impl.JDBCTopic": "com.activeviam.source.jdbc.api.impl.JdbcTopic",
+  "com.qfs.source.impl.ArrayJDBCMessageChannelFactory": "com.activeviam.source.jdbc.api.ArrayJdbcMessageChannelFactory",
+  "com.qfs.source.impl.AJDBCMessageChannelFactory": "com.activeviam.source.jdbc.api.AJdbcMessageChannelFactory",
+  "com.qfs.msg.jdbc.IJDBCTopic": "com.activeviam.source.jdbc.api.IJdbcTopic",
+  "com.qfs.msg.jdbc.IJDBCPublicationInfo": "com.activeviam.source.jdbc.api.report.IJdbcPublicationInfo"
 }
