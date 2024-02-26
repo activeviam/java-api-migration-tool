@@ -1,4 +1,5 @@
 {
+  "com.activeviam.copper.pivot.pp.LeadLagPostProcessor.Mode": "com.activeviam.activepivot.copper.api.NavigationMode",
   "com.qfs.msg.impl.QfsResultSetRow": "com.activeviam.source.jdbc.api.impl.ResultSetRow",
   "com.qfs.msg.jdbc.IJDBCSource": "com.activeviam.source.jdbc.api.IJdbcSource",
   "com.qfs.source.impl.JDBCMessageChannelFactory": "com.activeviam.source.jdbc.api.JdbcMessageChannelFactory",
