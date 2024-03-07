@@ -15,21 +15,20 @@ import java.util.Map;
 
 public class JsonUtils {
 
-	private JsonUtils() {
-	}
+  private JsonUtils() {}
 
-	public static Map<String, String> loadMappingFromJson(final String hardcodedMapping) {
-		final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		try (final InputStream input = classLoader.getResourceAsStream(hardcodedMapping)) {
-			return jsonStreamToMap(input);
-		} catch (final IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
+  public static Map<String, String> loadMappingFromJson(final String hardcodedMapping) {
+    final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+    try (final InputStream input = classLoader.getResourceAsStream(hardcodedMapping)) {
+      return jsonStreamToMap(input);
+    } catch (final IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
-	private static Map<String, String> jsonStreamToMap(final InputStream stream) throws IOException {
-		final ObjectMapper mapper = new ObjectMapper();
-		return (Map<String, String>) mapper.readValue(stream, HashMap.class);
-	}
-
+  @SuppressWarnings("unchecked")
+  private static Map<String, String> jsonStreamToMap(final InputStream stream) throws IOException {
+    final ObjectMapper mapper = new ObjectMapper();
+    return (Map<String, String>) mapper.readValue(stream, HashMap.class);
+  }
 }

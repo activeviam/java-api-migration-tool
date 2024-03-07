@@ -51,82 +51,41 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.12.1</version>
+				</plugin>
+
 				<!-- Plugin to format code -->
 				<plugin>
-					<groupId>net.revelc.code.formatter</groupId>
-					<artifactId>formatter-maven-plugin</artifactId>
-					<version>2.23.0</version>
-					<configuration>
-						<configFile>ActiveViamCodeFormatter.xml</configFile>
-						<encoding>UTF-8</encoding>
-						<compilerSource>${java.compileVersion}</compilerSource>
-						<compilerCompliance>${java.compileVersion}</compilerCompliance>
-						<compilerTargetPlatform>${java.compileVersion}</compilerTargetPlatform>
-					</configuration>
-					<dependencies>
-						<dependency>
-							<groupId>com.activeviam.formatting</groupId>
-							<artifactId>formatting</artifactId>
-							<version>6.0.9</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-				<plugin>
-					<groupId>net.revelc.code</groupId>
-					<artifactId>impsort-maven-plugin</artifactId>
-					<version>1.8.0</version>
-					<configuration>
-						<removeUnused>true</removeUnused>
-						<compliance>${java.compileVersion}</compliance>
-					</configuration>
+					<groupId>com.spotify.fmt</groupId>
+					<artifactId>fmt-maven-plugin</artifactId>
+					<version>2.22</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 
 		<plugins>
-								<plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <configuration>
-                <descriptorRefs>
-                    <descriptorRef>jar-with-dependencies</descriptorRef>
-                </descriptorRefs>
-            </configuration>
-            <executions>
-                <execution>
-                    <id>assemble-all</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>single</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-			<!-- Validate format of all files in src/main/java and src/test/java -->
 			<plugin>
-				<groupId>net.revelc.code.formatter</groupId>
-				<artifactId>formatter-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
 				<executions>
 					<execution>
-						<id>validate-formatting</id>
+						<id>assemble-all</id>
+						<phase>package</phase>
 						<goals>
-							<goal>validate</goal>
+							<goal>single</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>net.revelc.code</groupId>
-				<artifactId>impsort-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>validate-imports</id>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -134,6 +93,21 @@
 					<source>17</source>
 					<target>17</target>
 				</configuration>
+			</plugin>
+
+			<!-- Validate format of all files in src/main/java and src/test/java -->
+			<plugin>
+				<groupId>com.spotify.fmt</groupId>
+				<artifactId>fmt-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<?m2e ignore?>
 			</plugin>
 		</plugins>
 	</build>
@@ -145,31 +119,10 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>net.revelc.code</groupId>
-						<artifactId>impsort-maven-plugin</artifactId>
+						<groupId>com.spotify.fmt</groupId>
+						<artifactId>fmt-maven-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>validate-imports</id>
-								<phase>none</phase>
-							</execution>
-							<execution>
-								<id>sort-imports</id>
-								<goals>
-									<goal>sort</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>net.revelc.code.formatter</groupId>
-						<artifactId>formatter-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>validate-formatting</id>
-								<phase>none</phase>
-							</execution>
-							<execution>
-								<id>format-files</id>
 								<goals>
 									<goal>format</goal>
 								</goals>

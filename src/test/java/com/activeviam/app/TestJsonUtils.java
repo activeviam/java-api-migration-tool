@@ -15,24 +15,24 @@ import org.junit.jupiter.api.Test;
 
 class TestJsonUtils {
 
-	@Test
-	void testLoadingMapFromFile() {
-		final String file = "hardcoded_mapping.json";
+  @Test
+  void testLoadingMapFromFile() {
+    final String file = "hardcoded_mapping.json";
 
-		final Map<String, String> mapping = loadMappingFromJson(file);
+    final Map<String, String> mapping = loadMappingFromJson(file);
 
-		assertThat(mapping).containsExactlyInAnyOrderEntriesOf(
-				Map.of(
-						"test_key_1",
-						"test_value_1",
-						"test_key_2",
-						"test_value_2",
-						"test_key_3",
-						"test_value_3",
-						"test_key_4",
-						"test_value_4",
-						"test_key_5",
-						"test_value_5"));
-	}
-
+    assertThat(mapping)
+        .containsExactlyInAnyOrderEntriesOf(
+            Map.of(
+                "test_key_1",
+                "test_value_1",
+                "test_key_2",
+                "test_value_2",
+                "test_key_3",
+                "test_value_3",
+                "test_key_4",
+                "test_value_4",
+                "test_key_5",
+                "test_value_5"));
+  }
 }

@@ -24,74 +24,75 @@ import java.util.TreeMap;
  */
 public class CsvMapping {
 
-	/** The directory of the created csv files. */
-	public static final String OUTPUT_DIRECTORY = "src/main/resources/mappings";
+  /** The directory of the created csv files. */
+  public static final String OUTPUT_DIRECTORY = "src/main/resources/mappings";
 
-	/** The name format of the created csv files. */
-	private static final String FILE_NAME_TEMPLATE = "%s_to_%s.csv";
+  /** The name format of the created csv files. */
+  private static final String FILE_NAME_TEMPLATE = "%s_to_%s.csv";
 
-	private CsvMapping() {
-	}
+  private CsvMapping() {}
 
-	/**
-	 * Creates a csv file from the given {@link Mapping} in {@value #OUTPUT_DIRECTORY}{@code /repositoryName}
-	 * directory.
-	 * <p>
-	 * The file name will match the following pattern: {@code 6_0_9_to_6_1_0.csv}.
-	 * <p>
-	 * If there is already an existing file, overwrites it.
-	 */
-	public static void createFileFromMapping(final Mapping mapping) {
-		final File file = getPathToMappingFile(
-				mapping.getInfo().getRepositoryName(),
-				mapping.getInfo().getCurrentVersion(),
-				mapping.getInfo().getTargetVersion()).toFile();
+  /**
+   * Creates a csv file from the given {@link Mapping} in {@value #OUTPUT_DIRECTORY}{@code
+   * /repositoryName} directory.
+   *
+   * <p>The file name will match the following pattern: {@code 6_0_9_to_6_1_0.csv}.
+   *
+   * <p>If there is already an existing file, overwrites it.
+   */
+  public static void createFileFromMapping(final Mapping mapping) {
+    final File file =
+        getPathToMappingFile(
+                mapping.getInfo().getRepositoryName(),
+                mapping.getInfo().getCurrentVersion(),
+                mapping.getInfo().getTargetVersion())
+            .toFile();
 
-		MigrationUtils.generateFile(file, writer -> {
-			for (final Map.Entry<String, String> entry : mapping.getMapping().entrySet()) {
-				writer.append(entry.getKey())
-						.append(' ')
-						.append(entry.getValue())
-						.append(MigrationUtils.LINE_SEPARATOR);
-			}
-		});
-	}
+    MigrationUtils.generateFile(
+        file,
+        writer -> {
+          for (final Map.Entry<String, String> entry : mapping.getMapping().entrySet()) {
+            writer
+                .append(entry.getKey())
+                .append(' ')
+                .append(entry.getValue())
+                .append(MigrationUtils.LINE_SEPARATOR);
+          }
+        });
+  }
 
-	/**
-	 * Creates a mapping from a csv file retrieved by its library name, current and target versions.
-	 */
-	public static Map<String, String> createMappingFromFile(
-			final String libraryName,
-			final String currentVersion,
-			final String targetVersion) {
-		final Path path = getPathToMappingFile(libraryName, currentVersion, targetVersion);
-		try {
-			final List<String> lines = Files.readAllLines(path);
+  /**
+   * Creates a mapping from a csv file retrieved by its library name, current and target versions.
+   */
+  public static Map<String, String> createMappingFromFile(
+      final String libraryName, final String currentVersion, final String targetVersion) {
+    final Path path = getPathToMappingFile(libraryName, currentVersion, targetVersion);
+    try {
+      final List<String> lines = Files.readAllLines(path);
 
-			final Map<String, String> mapping = new TreeMap<>();
-			for (final String line : lines) {
-				final String[] oldAndNewImports = line.split(" ");
-				assert oldAndNewImports.length == 2 : "Bad file format: " + line;
-				mapping.put(oldAndNewImports[0], oldAndNewImports[1]);
-			}
-			return mapping;
-		} catch (final IOException e) {
-			throw new RuntimeException(
-					"Make sure you generated a csv file with " + MappingApplication.class.getName() + " first.",
-					e);
-		}
-	}
+      final Map<String, String> mapping = new TreeMap<>();
+      for (final String line : lines) {
+        final String[] oldAndNewImports = line.split(" ");
+        assert oldAndNewImports.length == 2 : "Bad file format: " + line;
+        mapping.put(oldAndNewImports[0], oldAndNewImports[1]);
+      }
+      return mapping;
+    } catch (final IOException e) {
+      throw new RuntimeException(
+          "Make sure you generated a csv file with "
+              + MappingApplication.class.getName()
+              + " first.",
+          e);
+    }
+  }
 
-	private static Path getPathToMappingFile(
-			final String libraryName,
-			final String currentVersion,
-			final String targetVersion) {
-		return Path.of(OUTPUT_DIRECTORY, libraryName, getFileName(currentVersion, targetVersion));
-	}
+  private static Path getPathToMappingFile(
+      final String libraryName, final String currentVersion, final String targetVersion) {
+    return Path.of(OUTPUT_DIRECTORY, libraryName, getFileName(currentVersion, targetVersion));
+  }
 
-	private static String getFileName(final String currentVersion, final String targetVersion) {
-		return String
-				.format(FILE_NAME_TEMPLATE, currentVersion.replace('.', '_'), targetVersion.replace('.', '_'));
-	}
-
+  private static String getFileName(final String currentVersion, final String targetVersion) {
+    return String.format(
+        FILE_NAME_TEMPLATE, currentVersion.replace('.', '_'), targetVersion.replace('.', '_'));
+  }
 }
