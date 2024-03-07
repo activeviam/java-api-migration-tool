@@ -5,9 +5,9 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.mapping;
+package com.activeviam.mapping.private_;
 
-import com.activeviam.util.MigrationUtils;
+import com.activeviam.util.private_.MigrationUtils;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;

@@ -5,14 +5,14 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.mapping;
+package com.activeviam.mapping.private_;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.activeviam.util.MigrationUtils;
+import com.activeviam.util.private_.MigrationUtils;
 import java.io.File;
 import java.util.Map;
 import org.eclipse.jgit.lib.Repository;

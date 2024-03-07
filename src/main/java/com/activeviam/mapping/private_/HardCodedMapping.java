@@ -5,11 +5,11 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.mapping;
+package com.activeviam.mapping.private_;
 
-import static com.activeviam.util.JsonUtils.loadMappingFromJson;
+import static com.activeviam.util.private_.JsonUtils.loadMappingFromJson;
 
-import com.activeviam.util.MigrationUtils;
+import com.activeviam.util.private_.MigrationUtils;
 import java.util.Collections;
 import java.util.Map;
 

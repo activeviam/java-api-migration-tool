@@ -5,12 +5,12 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.migration.app;
+package com.activeviam.migration.api;
 
-import com.activeviam.mapping.CsvMapping;
-import com.activeviam.migration.FileMigrater;
-import com.activeviam.migration.MigrationInfo;
-import com.activeviam.util.MigrationUtils;
+import com.activeviam.mapping.private_.CsvMapping;
+import com.activeviam.migration.private_.FileMigrater;
+import com.activeviam.migration.private_.MigrationInfo;
+import com.activeviam.util.private_.MigrationUtils;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author ActiveViam
  */
-public class MigrationApplication {
+public final class MigrationApplication {
 
   private static final Logger LOGGER = Logger.getLogger(MigrationApplication.class.getName());
 

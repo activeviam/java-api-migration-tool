@@ -5,7 +5,7 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.util;
+package com.activeviam.util.private_;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;

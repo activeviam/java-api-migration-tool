@@ -5,14 +5,14 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.mapping.app;
+package com.activeviam.mapping.api;
 
-import com.activeviam.mapping.CsvMapping;
-import com.activeviam.mapping.Mapping;
-import com.activeviam.mapping.MappingGenerator;
-import com.activeviam.mapping.MappingPrinter;
-import com.activeviam.migration.app.MigrationApplication;
-import com.activeviam.util.MigrationUtils;
+import com.activeviam.mapping.private_.CsvMapping;
+import com.activeviam.mapping.private_.Mapping;
+import com.activeviam.mapping.private_.MappingGenerator;
+import com.activeviam.mapping.private_.MappingPrinter;
+import com.activeviam.migration.api.MigrationApplication;
+import com.activeviam.util.private_.MigrationUtils;
 
 /**
  * Launcher class to create a csv file representing a {@link Mapping} from a local git repository
@@ -20,7 +20,7 @@ import com.activeviam.util.MigrationUtils;
  *
  * @author ActiveViam
  */
-public class MappingApplication {
+public final class MappingApplication {
 
   /**
    * Generates the mapping csv file.

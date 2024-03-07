@@ -5,7 +5,7 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.util;
+package com.activeviam.util.private_;
 
 import java.io.BufferedReader;
 import java.io.File;

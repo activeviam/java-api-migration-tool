@@ -5,9 +5,9 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.util;
+package com.activeviam.util.private_;
 
-import static com.activeviam.util.JsonUtils.loadMappingFromJson;
+import static com.activeviam.util.private_.JsonUtils.loadMappingFromJson;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;

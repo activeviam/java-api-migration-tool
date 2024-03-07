@@ -5,7 +5,7 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.mapping;
+package com.activeviam.mapping.private_;
 
 import java.util.Map;
 
