@@ -14,8 +14,6 @@ Do not forget to run `mvn clean install` before running the tools.
 
 Run `./migrate.sh "/path/to/the/project/to/migrate"`.
 
-> _This command will likely evolve in the coming days._
-
 ## Mapping
 
 The tool to generate the mapping from old packages to the new ones in the following format:
@@ -26,7 +24,8 @@ Some renamed classes might also be included in the generated mapping.
 Test classes are not included in the generated mapping.
 
 You can use this tool with `generateMapping.sh` bash script (run `./generateMapping.sh <args>` in bash), or with the following command line:
-`java -cp target/java-api-migration-tool-<version>-jar-with-dependencies.jar com.activeviam.mapping.app.MappingApplication <args>`.
+`java -cp target/java-api-migration-tool-<version>-jar-with-dependencies.jar com.activeviam.mapping.api.MappingApplication <args>`
+where `<version>` is the version of the migration tool you are using.
 
 There are up to 3 parameters:
  - if 1 argument is provided, you can set the path to the local git repository of the library to create the mapping from
@@ -47,7 +46,8 @@ Note that some mapping files are already generated.
 The tool to migrate class imports with the generated mapping file.
 
 You can use this tool with `migrate.sh` bash script (run `./migrate.sh <args>` in  bash), or with the following command line:
-`java -cp target/java-api-migration-tool-<version>-jar-with-dependencies.jar com.activeviam.migration.app.MigrationApplication <args>`.
+`java -cp target/java-api-migration-tool-<version>-jar-with-dependencies.jar com.activeviam.migration.api.MigrationApplication <args>`
+where `<version>` is the version of the migration tool you are using.
 
 There are up to 4 parameters:
  - if 1 argument is provided, you can set the path to the project to migrate
