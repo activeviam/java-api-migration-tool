@@ -6,7 +6,7 @@
 
 	<groupId>com.activeviam</groupId>
 	<artifactId>java-api-migration-tool</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 
 	<name>Java API Migration Tool</name>
 	<packaging>jar</packaging>
