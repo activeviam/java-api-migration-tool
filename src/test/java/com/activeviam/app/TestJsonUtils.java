@@ -7,7 +7,7 @@
 
 package com.activeviam.app;
 
-import static com.activeviam.mapping.app.JsonUtils.loadMappingFromJson;
+import static com.activeviam.util.JsonUtils.loadMappingFromJson;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;

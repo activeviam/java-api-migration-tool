@@ -7,7 +7,7 @@
 
 package com.activeviam.mapping.app;
 
-import static com.activeviam.mapping.app.JsonUtils.loadMappingFromJson;
+import static com.activeviam.util.JsonUtils.loadMappingFromJson;
 
 import com.activeviam.mapping.CsvMapping;
 import com.activeviam.mapping.Mapping;
