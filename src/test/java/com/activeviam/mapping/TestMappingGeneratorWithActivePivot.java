@@ -30,7 +30,7 @@ class TestMappingGeneratorWithActivePivot {
   @Test
   void testMappingBetween_6_0_9_And_6_1_0_alpha1() {
     final Map<String, String> mapping =
-        MappingGenerator.generateMapping(ACTIVEPIVOT_REPOSITORY, "6.0.9", "6.1.0-alpha1", Map.of())
+        MappingGenerator.generateMapping(ACTIVEPIVOT_REPOSITORY, "6.0.9", "6.1.0-alpha1")
             .getMapping();
 
     assertEquals(

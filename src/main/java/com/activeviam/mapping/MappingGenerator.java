@@ -56,12 +56,12 @@ public class MappingGenerator {
 
   /** Generates a {@link Mapping} from the given repository between the two given versions. */
   public static Mapping generateMapping(
-      final String repositoryPath,
-      final String currentVersion,
-      final String targetVersion,
-      final Map<String, String> hardcodedMapping) {
+      final String repositoryPath, final String currentVersion, final String targetVersion) {
     final MappingGenerator generator =
         new MappingGenerator(repositoryPath, currentVersion, targetVersion);
+
+    final Map<String, String> hardcodedMapping =
+        HardCodedMapping.loadHardcodedMapping(repositoryPath, targetVersion);
 
     final Duration executionTime =
         MigrationUtils.runAndGetTime(() -> generator.computeMapping(hardcodedMapping));

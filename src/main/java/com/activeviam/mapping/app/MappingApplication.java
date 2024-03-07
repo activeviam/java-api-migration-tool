@@ -7,15 +7,12 @@
 
 package com.activeviam.mapping.app;
 
-import static com.activeviam.util.JsonUtils.loadMappingFromJson;
-
 import com.activeviam.mapping.CsvMapping;
 import com.activeviam.mapping.Mapping;
 import com.activeviam.mapping.MappingGenerator;
 import com.activeviam.mapping.MappingPrinter;
 import com.activeviam.migration.app.MigrationApplication;
 import com.activeviam.util.MigrationUtils;
-import java.util.Map;
 
 /**
  * Launcher class to create a csv file representing a {@link Mapping} from a local git repository
@@ -24,8 +21,6 @@ import java.util.Map;
  * @author ActiveViam
  */
 public class MappingApplication {
-
-  private static final String HARDCODED_MAPPING = "hardcoded_mapping.json";
 
   /**
    * Generates the mapping csv file.
@@ -55,13 +50,9 @@ public class MappingApplication {
     MigrationUtils.checkVersion(currentVersion);
     MigrationUtils.checkVersion(targetVersion);
 
-    // Get hardcoded mapping
-    final Map<String, String> hardcodedMapping = loadHardcodedMapping();
-
     // Create the mapping
     final Mapping mapping =
-        MappingGenerator.generateMapping(
-            repositoryPath, currentVersion, targetVersion, hardcodedMapping);
+        MappingGenerator.generateMapping(repositoryPath, currentVersion, targetVersion);
 
     // Print the mapping
     MappingPrinter.printMapping(mapping);
@@ -70,9 +61,5 @@ public class MappingApplication {
     CsvMapping.createFileFromMapping(mapping);
 
     System.exit(0);
-  }
-
-  private static Map<String, String> loadHardcodedMapping() {
-    return loadMappingFromJson(HARDCODED_MAPPING);
   }
 }
