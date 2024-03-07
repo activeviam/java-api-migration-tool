@@ -8,6 +8,14 @@ It is composed of two parts:
 
 Do not forget to run `mvn clean install` before running the tools.
 
+## Basic usage
+
+### Migrate from 6.0 to 6.1.0-alpha1
+
+Run `./migrate.sh "/path/to/the/project/to/migrate"`.
+
+> _This command will likely evolve in the coming days._
+
 ## Mapping
 
 The tool to generate the mapping from old packages to the new ones in the following format:
