@@ -26,12 +26,17 @@ Some renamed classes might also be included in the generated mapping.
 Test classes are not included in the generated mapping.
 
 You can use this tool with `generateMapping.sh` bash script (run `./generateMapping.sh <args>` in bash), or with the following command line:
-`java -cp target/java-api-migration-tool-<version>.jar com.activeviam.mapping.app.MappingApplication <args>`
+`java -cp target/java-api-migration-tool-<version>-jar-with-dependencies.jar com.activeviam.mapping.app.MappingApplication <args>`.
+
 There are up to 3 parameters:
  - if 1 argument is provided, you can set the path to the local git repository of the library to create the mapping from
  - if 3 arguments are provided, you can set the path to the local git repository and the current and target versions of the mapping
+
 Default values for the current and target versions are `6.0.12` and `6.1.0-alpha1`.
-Usage example: `./generateMapping.sh "/path/to/the/local/git/repository" "6.0.0" "6.1.0"`
+
+Preferably use a tag or branch name when you provide a version.
+
+Usage example: `./generateMapping.sh "/path/to/the/local/git/repository" "6.0.0" "6.1.0"`.
 
 Mapping files are generated in `src/main/resources/mappings/<libraryName>` folder, and named like `6_0_0_to_6_1_0.csv`.
 
@@ -42,10 +47,15 @@ Note that some mapping files are already generated.
 The tool to migrate class imports with the generated mapping file.
 
 You can use this tool with `migrate.sh` bash script (run `./migrate.sh <args>` in  bash), or with the following command line:
-`java -cp target/java-api-migration-tool-<version>.jar com.activeviam.migration.app.MigrationApplication <args>`
+`java -cp target/java-api-migration-tool-<version>-jar-with-dependencies.jar com.activeviam.migration.app.MigrationApplication <args>`.
+
 There are up to 4 parameters:
  - if 1 argument is provided, you can set the path to the project to migrate
  - if 3 arguments are provided, you can set the path to the project and the current and target versions of the mapping
  - if 4 arguments are provided, you can set the path to the project, the current and target versions, and the name of the library
+
 Default values for the current and target versions are `6.0.12` and `6.1.0-alpha1`, and `activepivot` for the library name.
-Usage example: `./migrate.sh "/path/to/the/project/to/migrate" "6.0.0" "6.1.0" "libraryName"`
+
+Make sure there is a mapping file generated with these versions before trying to migrate.
+
+Usage example: `./migrate.sh "/path/to/the/project/to/migrate" "6.0.0" "6.1.0" "libraryName"`.

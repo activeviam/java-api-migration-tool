@@ -7,9 +7,11 @@
 
 package com.activeviam.util;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -131,6 +133,36 @@ public class MigrationUtils {
   public static void checkVersion(final String version) {
     if (version.contains("/") || version.contains("\\")) {
       throw new IllegalArgumentException("Version " + version + " contains a forbidden character.");
+    }
+  }
+
+  /** Executes the given command line in the given directory. */
+  public static void executeCommandLine(final String directoryPath, final String... command) {
+    final ProcessBuilder processBuilder = new ProcessBuilder(command);
+    processBuilder.directory(new File(directoryPath));
+
+    try {
+      final Process process = processBuilder.start();
+
+      // Read the output
+      final BufferedReader reader =
+          new BufferedReader(new InputStreamReader(process.getInputStream()));
+      String line;
+      while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+      }
+
+      // Check for errors
+      int exitCode = process.waitFor();
+      if (exitCode != 0) {
+        final BufferedReader errorReader =
+            new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        while ((line = errorReader.readLine()) != null) {
+          System.err.println(line);
+        }
+      }
+    } catch (final IOException | InterruptedException e) {
+      throw new RuntimeException(e);
     }
   }
 }

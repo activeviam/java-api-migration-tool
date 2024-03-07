@@ -1,5 +1,5 @@
 /*
- * (C) ActiveViam 2023
+ * (C) ActiveViam 2023-2024
  * ALL RIGHTS RESERVED. This material is the CONFIDENTIAL and PROPRIETARY
  * property of ActiveViam. Any unauthorized use,
  * reproduction or transfer of this material is strictly prohibited
@@ -70,23 +70,26 @@ public class MappingGenerator {
     return generator.mapping;
   }
 
-  /** Generates a {@link Mapping} from the given repository between the two given versions. */
-  public static Mapping generateMapping(
-      final String repositoryPath, final String currentVersion, final String targetVersion) {
-    return generateMapping(repositoryPath, currentVersion, targetVersion, Map.of());
-  }
-
   private MappingGenerator(
       final String repositoryPath, final String currentVersion, final String targetVersion) {
+    // Get repository
     this.repository = getRepository(repositoryPath);
+
+    // Fetch versions if needed
+    fetchIfNeeded(this.repository, repositoryPath, currentVersion);
+    fetchIfNeeded(this.repository, repositoryPath, targetVersion);
+
+    // Get commit ids
     this.currentCommit = getRevCommit(this.repository, currentVersion);
     this.targetCommit = getRevCommit(this.repository, targetVersion);
+
+    // Initialize mapping info
     this.mappingInfo =
         new MappingInfo(
             MigrationUtils.getFileOrDirectoryName(repositoryPath), currentVersion, targetVersion);
   }
 
-  private static Repository getRepository(final String repositoryPath) {
+  static Repository getRepository(final String repositoryPath) {
     try {
       return new FileRepositoryBuilder()
           .findGitDir(new File(repositoryPath))
@@ -95,6 +98,52 @@ public class MappingGenerator {
     } catch (final IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  /**
+   * Fetches the given version in the remote repository if it cannot be found locally.
+   *
+   * <p>Tries to fetch it as a tag first and then as a branch.
+   */
+  static void fetchIfNeeded(
+      final Repository repository, final String repositoryPath, final String version) {
+    if (isLocallyAbsent(repository, version)) {
+      fetchTag(repositoryPath, version);
+    }
+    if (isLocallyAbsent(repository, version)) {
+      fetchBranch(repositoryPath, version);
+    }
+    if (isLocallyAbsent(repository, version)) {
+      throw new RuntimeException(
+          "Version "
+              + version
+              + " cannot be found locally and remotely. Try to use a tag or branch name.");
+    }
+  }
+
+  /** Checks whether the given version is absent on the given local repository. */
+  static boolean isLocallyAbsent(final Repository repository, final String version) {
+    try {
+      return repository.findRef(version) == null;
+    } catch (final IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  /** Fetches the given tag (and only this one) in the given repository. */
+  private static void fetchTag(final String repositoryPath, final String tagName) {
+    final String[] commandToFetchTag = {
+      "git", "fetch", "origin", "--no-tags", "refs/tags/" + tagName + ":refs/tags/" + tagName
+    };
+    MigrationUtils.executeCommandLine(repositoryPath, commandToFetchTag);
+  }
+
+  /** Fetches the given branch (and only this one) in the given repository. */
+  private static void fetchBranch(final String repositoryPath, final String branchName) {
+    final String[] commandToFetchBranch = {
+      "git", "fetch", "origin", "+" + branchName + ":" + branchName
+    };
+    MigrationUtils.executeCommandLine(repositoryPath, commandToFetchBranch);
   }
 
   /**
