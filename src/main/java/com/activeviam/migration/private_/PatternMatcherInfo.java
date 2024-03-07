@@ -9,14 +9,15 @@ package com.activeviam.migration.private_;
 
 import com.activeviam.util.private_.MigrationUtils;
 import java.time.Duration;
-import java.util.Map;
 
 /**
- * Metadata information about the {@link FileMigrater#migrateFiles(List, Map) migration process}.
+ * Metadata information about a pattern matching process on a list of files.
  *
  * @author ActiveViam
  */
-public class MigrationInfo {
+public class PatternMatcherInfo {
+
+  private final String name;
 
   private final int numFiles;
 
@@ -25,7 +26,8 @@ public class MigrationInfo {
   private int matchingCounter = 0;
 
   /** Constructor. */
-  MigrationInfo(final int numFiles) {
+  PatternMatcherInfo(final String name, final int numFiles) {
+    this.name = name;
     this.numFiles = numFiles;
   }
 
@@ -41,7 +43,8 @@ public class MigrationInfo {
 
   @Override
   public String toString() {
-    return new StringBuilder("MIGRATION INFO")
+    return new StringBuilder(this.name)
+        .append(" INFO")
         .append(MigrationUtils.LINE_SEPARATOR)
         .append("Number of processed files: ")
         .append(this.numFiles)

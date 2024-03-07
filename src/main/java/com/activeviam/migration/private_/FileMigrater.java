@@ -1,5 +1,5 @@
 /*
- * (C) ActiveViam 2023
+ * (C) ActiveViam 2023-2024
  * ALL RIGHTS RESERVED. This material is the CONFIDENTIAL and PROPRIETARY
  * property of ActiveViam. Any unauthorized use,
  * reproduction or transfer of this material is strictly prohibited
@@ -21,38 +21,30 @@ import java.util.regex.Pattern;
  *
  * @author ActiveViam
  */
-public class FileMigrater {
+public class FileMigrater extends AFilesProcessor {
 
-  private static final String ALL_EXCEPT_ALPHANUMERIC_AND_UNDERSCORE = "([^A-Za-z0-9_])";
-
-  /** Java files to migrate. */
-  private final List<Path> files;
+  private static final String NAME = "MIGRATION";
 
   private final Map<String, String> mapping;
 
-  private final MigrationInfo migrationInfo;
-
-  private final Pattern pattern; // Pattern is thread-safe
-
   /** Migrates the given files according to the given mapping between old and new imports. */
-  public static MigrationInfo migrateFiles(
+  public static PatternMatcherInfo migrateFiles(
       final List<Path> files, final Map<String, String> mapping) {
     final FileMigrater migrater = new FileMigrater(files, mapping);
 
-    final Duration executionTime = MigrationUtils.runAndGetTime(migrater::migrateFiles);
-    migrater.migrationInfo.setExecutionTime(executionTime);
+    final Duration executionTime = MigrationUtils.runAndGetTime(migrater::processFiles);
+    migrater.info.setExecutionTime(executionTime);
 
-    return migrater.migrationInfo;
+    return migrater.info;
   }
 
   private FileMigrater(final List<Path> files, final Map<String, String> mapping) {
-    this.files = files;
+    super(NAME, files, mapping.keySet());
     this.mapping = mapping;
-    this.migrationInfo = new MigrationInfo(this.files.size());
-    this.pattern = createPattern(this.mapping.keySet());
   }
 
-  private static Pattern createPattern(final Set<String> patternsToMatch) {
+  @Override
+  protected Pattern createPattern(final Set<String> patternsToMatch) {
     final String patternString =
         new StringBuilder("(")
             .append(String.join("|", patternsToMatch))
@@ -63,19 +55,11 @@ public class FileMigrater {
     return Pattern.compile(patternString);
   }
 
-  private void migrateFiles() {
-    this.files.parallelStream().forEach(this::migrateFile);
-  }
-
-  private void migrateFile(final Path filePath) {
+  @Override
+  protected void processFile(final Path filePath) {
     final Matcher matcher = createMatcher(filePath);
     final String newContent = processMatcher(matcher);
     MigrationUtils.replaceFileContent(filePath.toFile(), newContent);
-  }
-
-  private Matcher createMatcher(final Path filePath) {
-    final String currentContent = MigrationUtils.getFileContent(filePath);
-    return this.pattern.matcher(currentContent);
   }
 
   private String processMatcher(final Matcher matcher) {
@@ -89,7 +73,7 @@ public class FileMigrater {
     }
     matcher.appendTail(stringBuffer);
 
-    this.migrationInfo.addToMatchingCounter(matchingCounter);
+    this.info.addToMatchingCounter(matchingCounter);
 
     return stringBuffer.toString();
   }

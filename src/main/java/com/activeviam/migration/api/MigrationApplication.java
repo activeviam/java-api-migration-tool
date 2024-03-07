@@ -8,8 +8,9 @@
 package com.activeviam.migration.api;
 
 import com.activeviam.mapping.private_.CsvMapping;
+import com.activeviam.migration.private_.ApiChecker;
 import com.activeviam.migration.private_.FileMigrater;
-import com.activeviam.migration.private_.MigrationInfo;
+import com.activeviam.migration.private_.PatternMatcherInfo;
 import com.activeviam.util.private_.MigrationUtils;
 import java.nio.file.Path;
 import java.util.List;
@@ -89,10 +90,16 @@ public final class MigrationApplication {
                 .toString());
 
     // Update class imports in the files
-    final MigrationInfo migrationInfo = FileMigrater.migrateFiles(files, mapping);
+    final PatternMatcherInfo migrationInfo = FileMigrater.migrateFiles(files, mapping);
 
     // Print info about the migration
     LOGGER.log(Level.INFO, migrationInfo::toString);
+
+    // Check API
+    final String apiCheckInfo = ApiChecker.checkApi(libraryName, files);
+
+    // Print info about the API check
+    LOGGER.log(Level.INFO, apiCheckInfo);
 
     System.exit(0);
   }
