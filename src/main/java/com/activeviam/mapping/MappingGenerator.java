@@ -135,7 +135,7 @@ public class MappingGenerator {
     final String[] commandToFetchTag = {
       "git", "fetch", "origin", "--no-tags", "refs/tags/" + tagName + ":refs/tags/" + tagName
     };
-    MigrationUtils.executeCommandLine(repositoryPath, commandToFetchTag);
+    MigrationUtils.executeCommandLine(repositoryPath, false, commandToFetchTag);
   }
 
   /** Fetches the given branch (and only this one) in the given repository. */
@@ -143,7 +143,7 @@ public class MappingGenerator {
     final String[] commandToFetchBranch = {
       "git", "fetch", "origin", "+" + branchName + ":" + branchName
     };
-    MigrationUtils.executeCommandLine(repositoryPath, commandToFetchBranch);
+    MigrationUtils.executeCommandLine(repositoryPath, false, commandToFetchBranch);
   }
 
   /**

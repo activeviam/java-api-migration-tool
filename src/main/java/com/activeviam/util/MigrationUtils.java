@@ -58,7 +58,7 @@ public class MigrationUtils {
         .replace('/', '.');
   }
 
-  /** Retrieves all the java files inside the given directory and its subdirectories. */
+  /** Retrieves all the java files inside the given directory and its sub-directories. */
   public static List<Path> getAllJavaFiles(final String directory) {
     try {
       return Files.walk(Paths.get(directory))
@@ -137,7 +137,8 @@ public class MigrationUtils {
   }
 
   /** Executes the given command line in the given directory. */
-  public static void executeCommandLine(final String directoryPath, final String... command) {
+  public static void executeCommandLine(
+      final String directoryPath, final boolean print, final String... command) {
     final ProcessBuilder processBuilder = new ProcessBuilder(command);
     processBuilder.directory(new File(directoryPath));
 
@@ -145,20 +146,25 @@ public class MigrationUtils {
       final Process process = processBuilder.start();
 
       // Read the output
-      final BufferedReader reader =
-          new BufferedReader(new InputStreamReader(process.getInputStream()));
       String line;
-      while ((line = reader.readLine()) != null) {
-        System.out.println(line);
+      if (print) {
+        final BufferedReader reader =
+            new BufferedReader(new InputStreamReader(process.getInputStream()));
+        while ((line = reader.readLine()) != null) {
+          System.out.println(line);
+        }
       }
 
-      // Check for errors
       int exitCode = process.waitFor();
-      if (exitCode != 0) {
-        final BufferedReader errorReader =
-            new BufferedReader(new InputStreamReader(process.getErrorStream()));
-        while ((line = errorReader.readLine()) != null) {
-          System.err.println(line);
+
+      // Check for errors
+      if (print) {
+        if (exitCode != 0) {
+          final BufferedReader errorReader =
+              new BufferedReader(new InputStreamReader(process.getErrorStream()));
+          while ((line = errorReader.readLine()) != null) {
+            System.err.println(line);
+          }
         }
       }
     } catch (final IOException | InterruptedException e) {

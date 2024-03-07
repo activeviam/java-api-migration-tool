@@ -125,11 +125,11 @@ class TestMappingGeneratorWithActivePivot {
   private static void deleteVersion(final String repositoryPath, final String version) {
     // Try to delete as a tag first
     final String[] commandToDeleteTag = {"git", "tag", "-d", version};
-    MigrationUtils.executeCommandLine(repositoryPath, commandToDeleteTag);
+    MigrationUtils.executeCommandLine(repositoryPath, false, commandToDeleteTag);
 
     // Then try as a branch
     final String[] commandToDeleteBranch = {"git", "branch", "-D", version};
-    MigrationUtils.executeCommandLine(repositoryPath, commandToDeleteBranch);
+    MigrationUtils.executeCommandLine(repositoryPath, false, commandToDeleteBranch);
   }
 
   static boolean checkRepository() {

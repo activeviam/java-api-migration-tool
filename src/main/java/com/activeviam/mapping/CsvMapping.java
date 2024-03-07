@@ -61,10 +61,8 @@ public class CsvMapping {
         });
   }
 
-  /**
-   * Creates a mapping from a csv file retrieved by its library name, current and target versions.
-   */
-  public static Map<String, String> createMappingFromFile(
+  /** Loads a mapping from a csv file retrieved by its library name, current and target versions. */
+  public static Map<String, String> loadMappingFromFile(
       final String libraryName, final String currentVersion, final String targetVersion) {
     final Path path = getPathToMappingFile(libraryName, currentVersion, targetVersion);
     try {

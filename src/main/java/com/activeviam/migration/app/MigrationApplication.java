@@ -74,7 +74,7 @@ public class MigrationApplication {
 
     // Get the mapping from the corresponding csv file
     final Map<String, String> mapping =
-        CsvMapping.createMappingFromFile(libraryName, currentVersion, targetVersion);
+        CsvMapping.loadMappingFromFile(libraryName, currentVersion, targetVersion);
 
     // Get the java files in the project to migrate
     final List<Path> files = MigrationUtils.getAllJavaFiles(projectPath);
