@@ -126,4 +126,11 @@ public class MigrationUtils {
     final long totalTimeInNanos = System.nanoTime() - startTimeInNanos;
     return Duration.ofNanos(totalTimeInNanos);
   }
+
+  /** Checks that the given version does not contain a forbidden character. */
+  public static void checkVersion(final String version) {
+    if (version.contains("/") || version.contains("\\")) {
+      throw new IllegalArgumentException("Version " + version + " contains a forbidden character.");
+    }
+  }
 }

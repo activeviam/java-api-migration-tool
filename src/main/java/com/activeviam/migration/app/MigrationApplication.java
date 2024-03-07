@@ -68,6 +68,10 @@ public class MigrationApplication {
           "Wrong number of arguments: " + args.length + ", expected 1, 3 or 4.");
     }
 
+    // Check versions
+    MigrationUtils.checkVersion(currentVersion);
+    MigrationUtils.checkVersion(targetVersion);
+
     // Get the mapping from the corresponding csv file
     final Map<String, String> mapping =
         CsvMapping.createMappingFromFile(libraryName, currentVersion, targetVersion);

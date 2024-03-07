@@ -14,6 +14,7 @@ import com.activeviam.mapping.Mapping;
 import com.activeviam.mapping.MappingGenerator;
 import com.activeviam.mapping.MappingPrinter;
 import com.activeviam.migration.app.MigrationApplication;
+import com.activeviam.util.MigrationUtils;
 import java.util.Map;
 
 /**
@@ -50,6 +51,11 @@ public class MappingApplication {
           "Wrong number of arguments: " + args.length + ", expected 1 or 3.");
     }
 
+    // Check versions
+    MigrationUtils.checkVersion(currentVersion);
+    MigrationUtils.checkVersion(targetVersion);
+
+    // Get hardcoded mapping
     final Map<String, String> hardcodedMapping = loadHardcodedMapping();
 
     // Create the mapping

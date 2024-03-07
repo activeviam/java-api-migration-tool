@@ -5,7 +5,7 @@
  * reproduction or transfer of this material is strictly prohibited
  */
 
-package com.activeviam.app;
+package com.activeviam.util;
 
 import static com.activeviam.util.JsonUtils.loadMappingFromJson;
 import static org.assertj.core.api.Assertions.assertThat;
