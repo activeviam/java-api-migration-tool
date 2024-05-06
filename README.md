@@ -10,7 +10,7 @@ Do not forget to run `mvn clean install` before running the tools.
 
 ## Basic usage
 
-### Migrate from 6.0 to 6.1.0-alpha1
+### Migrate from 6.0 to 6.1.0-beta
 
 Run `./migrate.sh "/path/to/the/project/to/migrate"`.
 
@@ -31,7 +31,7 @@ There are up to 3 parameters:
  - if 1 argument is provided, you can set the path to the local git repository of the library to create the mapping from
  - if 3 arguments are provided, you can set the path to the local git repository and the current and target versions of the mapping
 
-Default values for the current and target versions are `6.0.12` and `6.1.0-alpha1`.
+Default values for the current and target versions are `6.0.13` and `6.1.0-beta`.
 
 Preferably use a tag or branch name when you provide a version.
 

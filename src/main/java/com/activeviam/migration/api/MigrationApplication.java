@@ -28,10 +28,10 @@ public final class MigrationApplication {
   private static final Logger LOGGER = Logger.getLogger(MigrationApplication.class.getName());
 
   /** Default current version of the migration. */
-  public static final String DEFAULT_CURRENT_VERSION = "6.0.12";
+  public static final String DEFAULT_CURRENT_VERSION = "6.0.13";
 
   /** Default target version of the migration. */
-  public static final String DEFAULT_TARGET_VERSION = "6.1.0-alpha1";
+  public static final String DEFAULT_TARGET_VERSION = "6.1.0-beta";
 
   /** Default name of the bumped library. */
   public static final String DEFAULT_LIBRARY = "activepivot";
@@ -81,13 +81,7 @@ public final class MigrationApplication {
     final List<Path> files = MigrationUtils.getAllJavaFiles(projectPath);
     LOGGER.log(
         Level.INFO,
-        () ->
-            new StringBuilder("Process migration of ")
-                .append(files.size())
-                .append(" files in ")
-                .append(projectPath)
-                .append("...")
-                .toString());
+        () -> "Process migration of " + files.size() + " files in " + projectPath + "...");
 
     // Update class imports in the files
     final PatternMatcherInfo migrationInfo = FileMigrater.migrateFiles(files, mapping);
