@@ -50,19 +50,17 @@ public abstract class ApiChecker extends AFilesProcessor {
       final Duration executionTime = MigrationUtils.runAndGetTime(checker::processFiles);
       checker.info.setExecutionTime(executionTime);
 
-      return new StringBuilder(checker.info.toString())
-          .append(MigrationUtils.LINE_SEPARATOR)
-          .append("Non-public API use in each file:")
-          .append(MigrationUtils.LINE_SEPARATOR)
-          .append(printMatchingPatternsForEachFile(checker.matchingPatternsPerFile))
-          .toString();
+      return checker.info
+          + MigrationUtils.LINE_SEPARATOR
+          + "Non-public API use in each file:"
+          + MigrationUtils.LINE_SEPARATOR
+          + printMatchingPatternsForEachFile(checker.matchingPatternsPerFile);
     } else {
-      return new StringBuilder("There is no implementation of ")
-          .append(ApiChecker.class.getName())
-          .append(" for ")
-          .append(libraryName)
-          .append(" library.")
-          .toString();
+      return "There is no implementation of "
+          + ApiChecker.class.getName()
+          + " for "
+          + libraryName
+          + " library.";
     }
   }
 

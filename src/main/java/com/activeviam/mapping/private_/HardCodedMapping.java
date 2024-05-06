@@ -25,6 +25,8 @@ public class HardCodedMapping {
   private static final String LIBRARY = "activepivot";
   private static final String TARGET_VERSION = "6.1";
 
+  private HardCodedMapping() {}
+
   /**
    * Loads a hard-coded mapping if the given repository and target version require it, otherwise
    * returns an empty map.

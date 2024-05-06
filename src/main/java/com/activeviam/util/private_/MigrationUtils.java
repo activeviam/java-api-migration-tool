@@ -158,16 +158,16 @@ public class MigrationUtils {
       int exitCode = process.waitFor();
 
       // Check for errors
-      if (print) {
-        if (exitCode != 0) {
-          final BufferedReader errorReader =
-              new BufferedReader(new InputStreamReader(process.getErrorStream()));
-          while ((line = errorReader.readLine()) != null) {
-            System.err.println(line);
-          }
+      if (print && exitCode != 0) {
+        final BufferedReader errorReader =
+            new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        while ((line = errorReader.readLine()) != null) {
+          System.err.println(line);
         }
       }
+
     } catch (final IOException | InterruptedException e) {
+      Thread.currentThread().interrupt();
       throw new RuntimeException(e);
     }
   }

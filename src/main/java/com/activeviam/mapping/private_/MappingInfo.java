@@ -102,15 +102,14 @@ public class MappingInfo {
 
     @Override
     public String toString() {
-      return new StringBuilder(this.name)
-          .append(" | ")
-          .append(this.impactedFiles)
-          .append(" (")
-          .append(this.immigrants)
-          .append("/")
-          .append(this.emigrants)
-          .append(")")
-          .toString();
+      return this.name
+          + " | "
+          + this.impactedFiles
+          + " ("
+          + this.immigrants
+          + "/"
+          + this.emigrants
+          + ")";
     }
   }
 

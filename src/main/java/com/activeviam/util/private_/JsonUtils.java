@@ -29,6 +29,6 @@ public class JsonUtils {
   @SuppressWarnings("unchecked")
   private static Map<String, String> jsonStreamToMap(final InputStream stream) throws IOException {
     final ObjectMapper mapper = new ObjectMapper();
-    return (Map<String, String>) mapper.readValue(stream, HashMap.class);
+    return mapper.readValue(stream, HashMap.class);
   }
 }

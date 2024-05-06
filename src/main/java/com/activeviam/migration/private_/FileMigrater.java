@@ -46,12 +46,11 @@ public class FileMigrater extends AFilesProcessor {
   @Override
   protected Pattern createPattern(final Set<String> patternsToMatch) {
     final String patternString =
-        new StringBuilder("(")
-            .append(String.join("|", patternsToMatch))
-            .append(")(")
-            .append(ALL_EXCEPT_ALPHANUMERIC_AND_UNDERSCORE)
-            .append(")")
-            .toString();
+        "("
+            + String.join("|", patternsToMatch)
+            + ")("
+            + ALL_EXCEPT_ALPHANUMERIC_AND_UNDERSCORE
+            + ")";
     return Pattern.compile(patternString);
   }
 
@@ -63,7 +62,7 @@ public class FileMigrater extends AFilesProcessor {
   }
 
   private String processMatcher(final Matcher matcher) {
-    final StringBuffer stringBuffer = new StringBuffer();
+    final StringBuilder stringBuffer = new StringBuilder();
     int matchingCounter = 0;
 
     while (matcher.find()) {

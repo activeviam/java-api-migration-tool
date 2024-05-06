@@ -171,8 +171,8 @@ public class MappingGenerator {
 
   private void computeMapping(final Map<String, String> hardcodedMapping) {
     final List<DiffEntry> diffEntries = getDiffEntries();
-    final Map<String, String> mapping = computeMap(diffEntries);
-    final Map<String, String> postProcessedMapping = postProcessMapping(mapping);
+    final Map<String, String> map = computeMap(diffEntries);
+    final Map<String, String> postProcessedMapping = postProcessMapping(map);
     postProcessedMapping.putAll(hardcodedMapping);
     this.mapping = new Mapping(postProcessedMapping, this.mappingInfo);
   }
@@ -222,8 +222,7 @@ public class MappingGenerator {
         case DELETE:
           putIfAbsentOrReplaceWithDuplicateValue(diffEntry.getOldPath(), deletedFiles);
           break;
-        case RENAME:
-        case COPY:
+        case RENAME, COPY:
           result.put(diffEntry.getOldPath(), diffEntry.getNewPath());
           break;
         default:
@@ -274,19 +273,14 @@ public class MappingGenerator {
       return true;
     }
 
-    final Side side;
-    switch (diffEntry.getChangeType()) {
-      case ADD:
-      case RENAME:
-      case COPY:
-        side = Side.NEW;
-        break;
-      case DELETE:
-        side = Side.OLD;
-        break;
-      default:
-        throw new IllegalStateException("Unrecognized change type: " + diffEntry.getChangeType());
-    }
+    final Side side =
+        switch (diffEntry.getChangeType()) {
+          case ADD, RENAME, COPY -> Side.NEW;
+          case DELETE -> Side.OLD;
+          default ->
+              throw new IllegalStateException(
+                  "Unrecognized change type: " + diffEntry.getChangeType());
+        };
 
     return !diffEntry.getMode(side).equals(FileMode.REGULAR_FILE)
         || !diffEntry.getPath(side).endsWith(MigrationUtils.JAVA_SUFFIX)

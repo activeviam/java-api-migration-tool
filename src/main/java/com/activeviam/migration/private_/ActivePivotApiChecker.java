@@ -31,17 +31,16 @@ public class ActivePivotApiChecker extends ApiChecker {
   @Override
   protected Pattern createPattern(final Set<String> patternsToMatch) {
     final String patternString =
-        new StringBuilder("(")
-            .append(String.join("|", patternsToMatch))
-            .append(")\\.")
-            .append(ALPHANUMERIC_OR_UNDERSCORE_OR_DOT)
-            .append("*(")
-            .append(String.join("|", "internal", "private_"))
-            .append(")")
-            .append(ALPHANUMERIC_OR_UNDERSCORE_OR_DOT)
-            .append("*")
-            .append(FileMigrater.ALL_EXCEPT_ALPHANUMERIC_AND_UNDERSCORE)
-            .toString();
+        "("
+            + String.join("|", patternsToMatch)
+            + ")\\."
+            + ALPHANUMERIC_OR_UNDERSCORE_OR_DOT
+            + "*("
+            + String.join("|", "internal", "private_")
+            + ")"
+            + ALPHANUMERIC_OR_UNDERSCORE_OR_DOT
+            + "*"
+            + AFilesProcessor.ALL_EXCEPT_ALPHANUMERIC_AND_UNDERSCORE;
     return Pattern.compile(patternString);
   }
 }

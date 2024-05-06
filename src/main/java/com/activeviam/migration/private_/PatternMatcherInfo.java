@@ -43,17 +43,16 @@ public class PatternMatcherInfo {
 
   @Override
   public String toString() {
-    return new StringBuilder(this.name)
-        .append(" INFO")
-        .append(MigrationUtils.LINE_SEPARATOR)
-        .append("Number of processed files: ")
-        .append(this.numFiles)
-        .append(MigrationUtils.LINE_SEPARATOR)
-        .append("Total execution time: ")
-        .append(this.executionTime)
-        .append(MigrationUtils.LINE_SEPARATOR)
-        .append("Total matching patterns: ")
-        .append(this.matchingCounter)
-        .toString();
+    return this.name
+        + " INFO"
+        + MigrationUtils.LINE_SEPARATOR
+        + "Number of processed files: "
+        + this.numFiles
+        + MigrationUtils.LINE_SEPARATOR
+        + "Total execution time: "
+        + this.executionTime
+        + MigrationUtils.LINE_SEPARATOR
+        + "Total matching patterns: "
+        + this.matchingCounter;
   }
 }
