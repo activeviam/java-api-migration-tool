@@ -54,7 +54,7 @@ There are up to 4 parameters:
  - if 3 arguments are provided, you can set the path to the project and the current and target versions of the mapping
  - if 4 arguments are provided, you can set the path to the project, the current and target versions, and the name of the library
 
-Default values for the current and target versions are `6.0.12` and `6.1.0-alpha1`, and `activepivot` for the library name.
+Default values for the current and target versions are `6.0.13` and `6.1.0-beta`, and `activepivot` for the library name.
 
 Make sure there is a mapping file generated with these versions before trying to migrate.
 
