@@ -60,5 +60,14 @@
   "com.quartetfs.fwk.QuartetExtendedPluginValue": "com.activeviam.tech.core.api.registry.AtotiExtendedPluginValue",
   "com.quartetfs.fwk.QuartetPlugin": "com.activeviam.tech.core.api.registry.AtotiPlugin",
   "com.quartetfs.fwk.QuartetPluginValue": "com.activeviam.tech.core.api.registry.AtotiPluginValue",
-  "com.quartetfs.fwk.QuartetType": "com.activeviam.tech.core.api.registry.AtotiType"
+  "com.quartetfs.fwk.QuartetType": "com.activeviam.tech.core.api.registry.AtotiType",
+  "com.qfs.server.cfg.impl.JwtConfig": "com.activeviam.web.spring.api.config.JwtConfig",
+  "com.qfs.msg.csv.IParser": "com.activeviam.source.csv.internal.parser.IParser",
+  "com.quartetfs.tech.streaming.IStream": "com.activeviam.tech.streaming.intf.internal.IStream",
+  "com.qfs.condition.ICondition": "com.activeviam.database.api.ICondition",
+  "com.quartetfs.fwk.filtering.ICondition": "com.activeviam.tech.core.api.filtering.ICondition",
+  "com.qfs.store.transaction.ITransactionManager": "com.activeviam.database.datastore.api.transaction.ITransactionManager",
+  "com.quartetfs.biz.pivot.transaction.ITransactionManager": "com.activeviam.activepivot.core.intf.internal.transaction.ITransactionManager",
+  "io.atoti.util.HierarchiesUtil": "io.atoti.runtime.private_.util.HierarchiesUtil",
+  "com.quartetfs.biz.pivot.cube.hierarchy.impl.HierarchiesUtil": "com.activeviam.activepivot.core.impl.api.cube.hierarchy.HierarchiesUtil"
 }

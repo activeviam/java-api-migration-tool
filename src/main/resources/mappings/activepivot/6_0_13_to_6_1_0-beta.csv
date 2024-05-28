@@ -1541,6 +1541,7 @@ com.qfs.concurrent.impl.SharedBoundedTask com.activeviam.tech.concurrency.intern
 com.qfs.concurrent.impl.SharedTaskQueue com.activeviam.tech.concurrency.internal.impl.SharedTaskQueue
 com.qfs.concurrent.impl.SingleConsumerQueue com.activeviam.tech.concurrency.internal.impl.SingleConsumerQueue
 com.qfs.concurrent.locks.impl.TryLock com.activeviam.tech.concurrency.internal.lock.TryLock
+com.qfs.condition.ICondition com.activeviam.database.api.ICondition
 com.qfs.condition.impl.BaseConditions com.activeviam.database.commons.api.conditions.BaseConditions
 com.qfs.condition.impl.FieldComparisonCondition com.activeviam.database.datastore.api.condition.impl.FieldComparisonCondition
 com.qfs.content.cfg.IContentServiceConfig com.activeviam.tech.contentserver.spring.api.config.IContentServiceConfig
@@ -2029,6 +2030,7 @@ com.qfs.msg.csv.IFileInfo com.activeviam.source.csv.api.IFileInfo
 com.qfs.msg.csv.IFileListener com.activeviam.source.csv.api.IFileListener
 com.qfs.msg.csv.IFileParserConfiguration com.activeviam.source.csv.api.IFileParserConfiguration
 com.qfs.msg.csv.ILineReader com.activeviam.source.csv.api.ILineReader
+com.qfs.msg.csv.IParser com.activeviam.source.csv.internal.parser.IParser
 com.qfs.msg.csv.IParserResource com.activeviam.source.csv.internal.parser.IParserResource
 com.qfs.msg.csv.IParserResourceFactory com.activeviam.source.csv.internal.parser.IParserResourceFactory
 com.qfs.msg.csv.IParserResult com.activeviam.source.csv.internal.parser.IParserResult
@@ -2686,6 +2688,7 @@ com.qfs.server.cfg.impl.ActiveViamRestServicesConfig com.activeviam.activepivot.
 com.qfs.server.cfg.impl.ActiveViamWebSocketServicesConfig com.activeviam.activepivot.server.spring.private_.config.impl.ActiveViamWebSocketServicesConfig
 com.qfs.server.cfg.impl.DatabaseRestServicesConfig com.activeviam.activepivot.server.spring.private_.config.impl.DatabaseRestServicesConfig
 com.qfs.server.cfg.impl.FullAccessBranchPermissionsManagerConfig com.activeviam.activepivot.server.spring.internal.config.FullAccessBranchPermissionsManagerConfig
+com.qfs.server.cfg.impl.JwtConfig com.activeviam.web.spring.api.config.JwtConfig
 com.qfs.server.cfg.impl.JwtRestServiceConfig com.activeviam.web.spring.internal.config.JwtRestServiceConfig
 com.qfs.server.cfg.impl.MonitoringRestServicesConfig com.activeviam.activepivot.server.spring.private_.config.impl.MonitoringRestServicesConfig
 com.qfs.server.cfg.impl.QfsResourceHandlerRegistration com.activeviam.web.spring.internal.config.AtotiResourceHandlerRegistration
@@ -3277,6 +3280,7 @@ com.qfs.store.transaction.IRecordHandler com.activeviam.database.datastore.priva
 com.qfs.store.transaction.IStoreLocking com.activeviam.database.datastore.private_.transaction.IStoreLocking
 com.qfs.store.transaction.IStoreTransactionStatistics com.activeviam.database.datastore.api.transaction.stats.IStoreTransactionStatistics
 com.qfs.store.transaction.ITransactionExceptionHandler com.activeviam.database.datastore.api.transaction.ITransactionExceptionHandler
+com.qfs.store.transaction.ITransactionManager com.activeviam.database.datastore.api.transaction.ITransactionManager
 com.qfs.store.transaction.ITransactionalWriter com.activeviam.database.datastore.api.transaction.ITransactionalWriter
 com.qfs.store.transaction.TransactionStatisticsOption com.activeviam.database.datastore.api.transaction.stats.TransactionStatisticsOption
 com.qfs.store.transaction.impl.AIndependentAddRemoveTupleHandler com.activeviam.database.datastore.private_.transaction.impl.AIndependentAddRemoveTupleHandler
@@ -3834,6 +3838,7 @@ com.quartetfs.biz.pivot.cube.hierarchy.impl.AMembersSearchBenchmark com.activevi
 com.quartetfs.biz.pivot.cube.hierarchy.impl.APatternMatcher com.activeviam.activepivot.core.impl.internal.cube.hierarchy.impl.APatternMatcher
 com.quartetfs.biz.pivot.cube.hierarchy.impl.APatternMatcherFactory com.activeviam.activepivot.core.impl.private_.cube.hierarchy.impl.APatternMatcherFactory
 com.quartetfs.biz.pivot.cube.hierarchy.impl.AnalysisHierarchyInfo com.activeviam.activepivot.core.impl.private_.cube.hierarchy.impl.AnalysisHierarchyInfo
+com.quartetfs.biz.pivot.cube.hierarchy.impl.HierarchiesUtil com.activeviam.activepivot.core.impl.api.cube.hierarchy.HierarchiesUtil
 com.quartetfs.biz.pivot.cube.hierarchy.impl.HierarchyAndLevelInfo com.activeviam.activepivot.core.impl.internal.cube.hierarchy.impl.HierarchyAndLevelInfo
 com.quartetfs.biz.pivot.cube.hierarchy.impl.HierarchyInfo com.activeviam.activepivot.core.impl.internal.cube.hierarchy.impl.HierarchyInfo
 com.quartetfs.biz.pivot.cube.hierarchy.impl.LevelExtendedPlugin com.activeviam.activepivot.core.impl.private_.cube.hierarchy.impl.LevelExtendedPlugin
@@ -4667,6 +4672,7 @@ com.quartetfs.biz.pivot.transaction.IActivePivotSchemaTransactionManager com.act
 com.quartetfs.biz.pivot.transaction.IActivePivotTransactionInfo com.activeviam.activepivot.core.intf.internal.transaction.IActivePivotTransactionInfo
 com.quartetfs.biz.pivot.transaction.ICompositeActivePivotTransactionInfo com.activeviam.activepivot.core.intf.internal.transaction.ICompositeActivePivotTransactionInfo
 com.quartetfs.biz.pivot.transaction.ITransactionInfo com.activeviam.activepivot.core.intf.internal.transaction.ITransactionInfo
+com.quartetfs.biz.pivot.transaction.ITransactionManager com.activeviam.activepivot.core.intf.internal.transaction.ITransactionManager
 com.quartetfs.biz.pivot.transaction.feed.IActivePivotDataFeedHolder com.activeviam.activepivot.core.intf.internal.transaction.feed.IActivePivotDataFeedHolder
 com.quartetfs.biz.pivot.transaction.feed.IDataFeed com.activeviam.activepivot.core.intf.internal.transaction.feed.IDataFeed
 com.quartetfs.biz.pivot.transaction.feed.IDataFeedHolderFactory com.activeviam.activepivot.core.intf.internal.transaction.feed.IDataFeedHolderFactory
@@ -4916,6 +4922,7 @@ com.quartetfs.fwk.contributions.impl.PluginValueContribution com.activeviam.tech
 com.quartetfs.fwk.contributions.impl.TypeContribution com.activeviam.tech.core.internal.contributions.impl.TypeContribution
 com.quartetfs.fwk.filtering.ConditionEvaluationException com.activeviam.tech.core.api.filtering.ConditionEvaluationException
 com.quartetfs.fwk.filtering.IAccessor com.activeviam.tech.core.api.filtering.IAccessor
+com.quartetfs.fwk.filtering.ICondition com.activeviam.tech.core.api.filtering.ICondition
 com.quartetfs.fwk.filtering.ILogicalCondition com.activeviam.tech.core.api.filtering.ILogicalCondition
 com.quartetfs.fwk.filtering.IMatchingCondition com.activeviam.tech.core.api.filtering.IMatchingCondition
 com.quartetfs.fwk.filtering.IMultipleAccessor com.activeviam.tech.core.api.filtering.IMultipleAccessor
@@ -5776,6 +5783,7 @@ com.quartetfs.tech.streaming.IIdGenerator com.activeviam.tech.streaming.intf.api
 com.quartetfs.tech.streaming.ILongPollingService com.activeviam.tech.streaming.intf.api.ILongPollingService
 com.quartetfs.tech.streaming.IRangeProperty com.activeviam.tech.streaming.intf.api.IRangeProperty
 com.quartetfs.tech.streaming.IRegistrationService com.activeviam.tech.streaming.intf.api.IRegistrationService
+com.quartetfs.tech.streaming.IStream com.activeviam.tech.streaming.intf.internal.IStream
 com.quartetfs.tech.streaming.IStreamEvent com.activeviam.tech.streaming.intf.api.IStreamEvent
 com.quartetfs.tech.streaming.IStreamProperties com.activeviam.tech.streaming.intf.api.IStreamProperties
 com.quartetfs.tech.streaming.IStreamPublisher com.activeviam.tech.streaming.intf.internal.IStreamPublisher
@@ -6206,6 +6214,7 @@ io.atoti.udaf.util.UdafCtClassTemplate io.atoti.runtime.private_.udaf.util.UdafC
 io.atoti.util.DateUtil io.atoti.runtime.private_.util.DateUtil
 io.atoti.util.DescriptionUtils io.atoti.runtime.private_.util.DescriptionUtils
 io.atoti.util.ExceptionUtil io.atoti.runtime.private_.util.ExceptionUtil
+io.atoti.util.HierarchiesUtil io.atoti.runtime.private_.util.HierarchiesUtil
 io.atoti.util.I18nUtil io.atoti.runtime.private_.util.I18nUtil
 io.atoti.util.InitializationUtil io.atoti.runtime.private_.util.InitializationUtil
 io.atoti.util.LevelUtil io.atoti.runtime.private_.util.LevelUtil
