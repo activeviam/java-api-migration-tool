@@ -3514,9 +3514,7 @@ com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.ARetrievalNode com.acti
 com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.CachedPpNode com.activeviam.activepivot.core.impl.internal.query.aggregates.plan.graph.impl.CachedPpNode
 com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.CachedPrimitiveAggregationNode com.activeviam.activepivot.core.impl.internal.query.aggregates.plan.graph.impl.CachedPrimitiveAggregationNode
 com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.CachedPrimitiveNode com.activeviam.activepivot.core.impl.internal.query.aggregates.plan.graph.impl.CachedPrimitiveNode
-com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.EmptyExternalNode com.activeviam.activepivot.core.impl.internal.query.aggregates.plan.graph.impl.EmptyExternalNode
 com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.EmptyNode com.activeviam.activepivot.core.impl.internal.query.aggregates.plan.graph.impl.EmptyNode
-com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.ExternalNode com.activeviam.activepivot.core.impl.internal.query.aggregates.plan.graph.impl.ExternalNode
 com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.IHavePartitioningLevels com.activeviam.activepivot.core.impl.private_.query.aggregates.plan.graph.impl.IHavePartitioningLevels
 com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.IPlanningGraphVisitor com.activeviam.activepivot.core.impl.internal.query.aggregates.plan.graph.impl.IPlanningGraphVisitor
 com.quartetfs.biz.pivot.query.aggregates.plan.graph.impl.PlanningGraph com.activeviam.activepivot.core.impl.internal.query.aggregates.plan.graph.impl.PlanningGraph
