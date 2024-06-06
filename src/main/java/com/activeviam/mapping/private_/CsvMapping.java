@@ -8,10 +8,12 @@
 package com.activeviam.mapping.private_;
 
 import com.activeviam.mapping.api.MappingApplication;
+import com.activeviam.util.private_.JsonUtils;
 import com.activeviam.util.private_.MigrationUtils;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +27,10 @@ import java.util.TreeMap;
 public class CsvMapping {
 
   /** The directory of the created csv files. */
-  public static final String OUTPUT_DIRECTORY = "src/main/resources/mappings";
+  private static final String MAPPINGS_DIRECTORY = "mappings";
+
+  /** The path of the created csv files. */
+  public static final String OUTPUT_DIRECTORY = "src/main/resources/" + MAPPINGS_DIRECTORY;
 
   /** The name format of the created csv files. */
   private static final String FILE_NAME_TEMPLATE = "%s_to_%s.csv";
@@ -64,9 +69,12 @@ public class CsvMapping {
   /** Loads a mapping from a csv file retrieved by its library name, current and target versions. */
   public static Map<String, String> loadMappingFromFile(
       final String libraryName, final String currentVersion, final String targetVersion) {
-    final Path path = getPathToMappingFile(libraryName, currentVersion, targetVersion);
-    try {
-      final List<String> lines = Files.readAllLines(path);
+    final String path =
+        String.join(
+            "/", MAPPINGS_DIRECTORY, libraryName, getFileName(currentVersion, targetVersion));
+    try (final BufferedReader reader =
+        new BufferedReader(new InputStreamReader(JsonUtils.getResourceAsStream(path)))) {
+      final List<String> lines = reader.lines().toList();
 
       final Map<String, String> mapping = new TreeMap<>();
       for (final String line : lines) {

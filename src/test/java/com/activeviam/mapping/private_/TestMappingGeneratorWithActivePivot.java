@@ -24,8 +24,7 @@ import org.junit.jupiter.api.condition.DisabledIf;
     disabledReason = "Disabled because there is no local git repository to test.")
 class TestMappingGeneratorWithActivePivot {
 
-  private static final String ACTIVEPIVOT_REPOSITORY =
-      "C:/Users/elie/eclipse-workspace-6.1/activepivot";
+  private static final String ACTIVEPIVOT_REPOSITORY = null;
 
   @Test
   void testMappingBetween_6_0_9_And_6_1_0_alpha1() {

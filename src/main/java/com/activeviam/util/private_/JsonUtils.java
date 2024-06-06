@@ -17,13 +17,16 @@ public class JsonUtils {
 
   private JsonUtils() {}
 
-  public static Map<String, String> loadMappingFromJson(final String hardcodedMapping) {
-    final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-    try (final InputStream input = classLoader.getResourceAsStream(hardcodedMapping)) {
+  public static Map<String, String> loadMappingFromJson(final String path) {
+    try (final InputStream input = getResourceAsStream(path)) {
       return jsonStreamToMap(input);
     } catch (final IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public static InputStream getResourceAsStream(final String path) {
+    return Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
   }
 
   @SuppressWarnings("unchecked")
