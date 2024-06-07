@@ -32,12 +32,15 @@ class TestFileMigrater {
 
   private static final String CODE_LINE_TEMPLATE = "public abstract %s method(int parameter);";
 
+  private static final String BACKSLASH_TEMPLATE =
+      "final String message = \"A backslash after may throw an exception: %s\\\";";
+
   private static final Map<String, String> MAPPING =
       new TreeMap<>(Map.of("a.b.Class", "a.c.Class", "a.b.ClassImpl", "a.c.d.ClassImpl"));
 
   @AfterAll
   static void deleteTestFile() {
-    assert TEST_FILE_PATH.toFile().delete();
+    assert !TEST_FILE_PATH.toFile().exists() || TEST_FILE_PATH.toFile().delete();
   }
 
   @Test
@@ -59,6 +62,13 @@ class TestFileMigrater {
     generateTestFile(CODE_LINE_TEMPLATE);
     FileMigrater.migrateFiles(List.of(TEST_FILE_PATH), MAPPING);
     checkMigratedFile(CODE_LINE_TEMPLATE);
+  }
+
+  @Test
+  void testMigrateFileWithBackslash() {
+    generateTestFile(BACKSLASH_TEMPLATE);
+    FileMigrater.migrateFiles(List.of(TEST_FILE_PATH), MAPPING);
+    checkMigratedFile(BACKSLASH_TEMPLATE);
   }
 
   private static void generateTestFile(final String lineTemplate) {

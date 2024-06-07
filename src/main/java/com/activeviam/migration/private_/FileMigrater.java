@@ -66,8 +66,27 @@ public class FileMigrater extends AFilesProcessor {
     int matchingCounter = 0;
 
     while (matcher.find()) {
-      final String replacement = computeReplacementString(matcher);
+      /*
+       * There is a bug if there is a backslash at the end of a String to replace in the file. It
+       * causes this backslash to appear at the end of the replacement String, which throws an
+       * IllegalArgumentException in Matcher#appendReplacement(StringBuilder, String). So we need to
+       * check for this backslash every time and remove it from the replacement String to add it at
+       * the end of the stringBuffer after the replacement has been appended.
+       */
+      String replacement = computeReplacementString(matcher);
+      final boolean endWithBackslash = replacement.endsWith("\\");
+      if (endWithBackslash) {
+        // Remove the ending backslash from the replacement String
+        replacement = replacement.substring(0, replacement.length() - 1);
+      }
+
       matcher.appendReplacement(stringBuffer, replacement);
+
+      if (endWithBackslash) {
+        // Re-add the ending backslash after replacement
+        stringBuffer.append("\\");
+      }
+
       ++matchingCounter;
     }
     matcher.appendTail(stringBuffer);
