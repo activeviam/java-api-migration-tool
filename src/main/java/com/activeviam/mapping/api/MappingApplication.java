@@ -26,7 +26,8 @@ public final class MappingApplication {
    * Generates the mapping csv file.
    *
    * @param args specifies the path of the local git repository of the library if length 1,
-   *     specifies repository and current and target versions of the library if length 3
+   *     specifies repository path and current version if length 2, specifies repository path and
+   *     current and target versions if length 3
    */
   public static void main(final String[] args) {
     // Get arguments
@@ -37,13 +38,17 @@ public final class MappingApplication {
       repositoryPath = args[0];
       currentVersion = MigrationApplication.DEFAULT_CURRENT_VERSION;
       targetVersion = MigrationApplication.DEFAULT_TARGET_VERSION;
+    } else if (args.length == 2) {
+      repositoryPath = args[0];
+      currentVersion = args[1];
+      targetVersion = MigrationApplication.DEFAULT_TARGET_VERSION;
     } else if (args.length == 3) {
       repositoryPath = args[0];
       currentVersion = args[1];
       targetVersion = args[2];
     } else {
       throw new IllegalArgumentException(
-          "Wrong number of arguments: " + args.length + ", expected 1 or 3.");
+          "Wrong number of arguments: " + args.length + ", expected 1, 2 or 3.");
     }
 
     // Check versions

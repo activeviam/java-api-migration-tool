@@ -39,9 +39,9 @@ public final class MigrationApplication {
   /**
    * Migrates class imports in your java project.
    *
-   * @param args specifies the path of the project to migrate if length 1, specifies project and
-   *     current and target versions of the library if length 3, specifies project, versions and
-   *     library name if length 4
+   * @param args specifies the path of the project to migrate if length 1, specifies project path
+   *     and current version if length 2, specifies project path and current and target versions if
+   *     length 3, specifies project, versions and library name if length 4
    */
   public static void main(final String[] args) {
     // Get arguments
@@ -52,6 +52,11 @@ public final class MigrationApplication {
     if (args.length == 1) {
       projectPath = args[0];
       currentVersion = DEFAULT_CURRENT_VERSION;
+      targetVersion = DEFAULT_TARGET_VERSION;
+      libraryName = DEFAULT_LIBRARY;
+    } else if (args.length == 2) {
+      projectPath = args[0];
+      currentVersion = args[1];
       targetVersion = DEFAULT_TARGET_VERSION;
       libraryName = DEFAULT_LIBRARY;
     } else if (args.length == 3) {
@@ -66,7 +71,7 @@ public final class MigrationApplication {
       libraryName = args[3];
     } else {
       throw new IllegalArgumentException(
-          "Wrong number of arguments: " + args.length + ", expected 1, 3 or 4.");
+          "Wrong number of arguments: " + args.length + ", expected 1, 2, 3 or 4.");
     }
 
     // Check versions
