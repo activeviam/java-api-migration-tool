@@ -31,7 +31,7 @@ public final class MigrationApplication {
   public static final String DEFAULT_CURRENT_VERSION = "6.0.14";
 
   /** Default target version of the migration. */
-  public static final String DEFAULT_TARGET_VERSION = "6.1.0-beta2";
+  public static final String DEFAULT_TARGET_VERSION = "6.1.0-rc";
 
   /** Default name of the bumped library. */
   public static final String DEFAULT_LIBRARY = "activepivot";

@@ -69,5 +69,10 @@
   "com.qfs.store.transaction.ITransactionManager": "com.activeviam.database.datastore.api.transaction.ITransactionManager",
   "com.quartetfs.biz.pivot.transaction.ITransactionManager": "com.activeviam.activepivot.core.intf.internal.transaction.ITransactionManager",
   "io.atoti.util.HierarchiesUtil": "io.atoti.runtime.private_.util.HierarchiesUtil",
-  "com.quartetfs.biz.pivot.cube.hierarchy.impl.HierarchiesUtil": "com.activeviam.activepivot.core.impl.api.cube.hierarchy.HierarchiesUtil"
+  "com.quartetfs.biz.pivot.cube.hierarchy.impl.HierarchiesUtil": "com.activeviam.activepivot.core.impl.api.cube.hierarchy.HierarchiesUtil",
+  "com.qfs.msg.impl.POJOColumnCalculator": "com.activeviam.source.common.api.impl.PojoColumnCalculator",
+  "com.qfs.source.impl.POJOMessageChannelFactory": "com.activeviam.source.common.api.impl.PojoMessageChannelFactory",
+  "com.qfs.msg.impl.POJOTuplizer": "com.activeviam.source.common.api.impl.PojoTuplizer",
+  "com.qfs.store.part.impl.PartitioningNodeWithMultiFieldModuloDescription": "com.activeviam.tech.partitioning.api.node.PartitioningNodeWithMultiFieldsModuloDescription",
+  "com.qfs.store.part.impl.PartitioningNodeWithMultiFieldModulo": "com.activeviam.tech.partitioning.internal.impl.PartitioningNodeWithMultiFieldsModulo"
 }
