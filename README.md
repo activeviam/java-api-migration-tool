@@ -10,15 +10,15 @@ Do not forget to run `mvn clean install` before running the tools.
 
 ## Basic usage
 
-### Migrate your application from 6.0 to 6.1.0-rc
+### Migrate your application from 6.0 to 6.1.0-rc2
 
 Run `./migrate.sh "/path/to/the/project/to/migrate"`.
 
-### Migrate your application from 5.11 to 6.1.0-rc
+### Migrate your application from 5.11 to 6.1.0-rc2
 
 Run `./migrate.sh "/path/to/the/project/to/migrate" "5.11"`.
 
-### Migrate your application from 5.10 to 6.1.0-rc
+### Migrate your application from 5.10 to 6.1.0-rc2
 
 Run `./migrate.sh "/path/to/the/project/to/migrate" "5.10"`.
 
@@ -38,7 +38,7 @@ About the arguments:
  - if 2 arguments are provided, you can set the path to the project and its current atoti-server version
  - if 3 arguments are provided, you can set the path to the project and the current and target atoti-server versions
 
-Default values for the current and target versions are `6.0.14` and `6.1.0-rc` when they are not provided.
+Default values for the current and target versions are `6.0.15` and `6.1.0-rc2` when they are not provided.
 
 Make sure there is a mapping file generated with these versions before trying to migrate.
 

@@ -28,10 +28,10 @@ public final class MigrationApplication {
   private static final Logger LOGGER = Logger.getLogger(MigrationApplication.class.getName());
 
   /** Default current version of the migration. */
-  public static final String DEFAULT_CURRENT_VERSION = "6.0.14";
+  public static final String DEFAULT_CURRENT_VERSION = "6.0.15";
 
   /** Default target version of the migration. */
-  public static final String DEFAULT_TARGET_VERSION = "6.1.0-rc";
+  public static final String DEFAULT_TARGET_VERSION = "6.1.0-rc2";
 
   /** Default name of the bumped library. */
   public static final String DEFAULT_LIBRARY = "activepivot";

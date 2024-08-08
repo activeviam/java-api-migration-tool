@@ -26,7 +26,7 @@ There are up to 3 parameters:
  - if 2 arguments are provided, you can set the path to the local git repository and the current version of the mapping
  - if 3 arguments are provided, you can set the path to the local git repository and the current and target versions of the mapping
 
-Default values for the current and target versions are `6.0.14` and `6.1.0-rc`.
+Default values for the current and target versions are `6.0.15` and `6.1.0-rc2`.
 
 Preferably use a tag or branch name when you provide a version.
 
@@ -50,7 +50,7 @@ There are up to 4 parameters:
  - if 3 arguments are provided, you can set the path to the project and the current and target versions of the mapping
  - if 4 arguments are provided, you can set the path to the project, the current and target versions, and the name of the library
 
-Default values for the current and target versions are `6.0.14` and `6.1.0-rc`, and `activepivot` for the library name.
+Default values for the current and target versions are `6.0.15` and `6.1.0-rc2`, and `activepivot` for the library name.
 
 Make sure there is a mapping file generated with these versions before trying to migrate.
 
