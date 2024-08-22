@@ -63,6 +63,7 @@
   "com.quartetfs.fwk.QuartetType": "com.activeviam.tech.core.api.registry.AtotiType",
   "com.qfs.server.cfg.impl.JwtConfig": "com.activeviam.web.spring.api.config.JwtConfig",
   "com.qfs.msg.csv.IParser": "com.activeviam.source.csv.internal.parser.IParser",
+  "com.quartetfs.fwk.format.IParser": "com.activeviam.tech.core.api.format.IParser",
   "com.quartetfs.tech.streaming.IStream": "com.activeviam.tech.streaming.intf.internal.IStream",
   "com.qfs.condition.ICondition": "com.activeviam.database.api.ICondition",
   "com.quartetfs.fwk.filtering.ICondition": "com.activeviam.tech.core.api.filtering.ICondition",
