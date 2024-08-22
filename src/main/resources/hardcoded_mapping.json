@@ -29,7 +29,7 @@
   "com.activeviam.tech.internal.registry.IRegistryCreator": "com.activeviam.tech.core.internal.registry.IRegistryFactory",
   "com.quartetfs.fwk.impl.QFSRegistry": "com.activeviam.tech.core.internal.registry.impl.StandardRegistry",
   "com.quartetfs.fwk.impl.QfsRegistryCreator": "com.activeviam.tech.core.internal.registry.impl.StandardRegistryFactory",
-  "com.activeviam.web.core.private_.QfsWebUtils": "com.activeviam.web.core.private_.UrlUtils",
+  "com.qfs.QfsWebUtils": "com.activeviam.web.core.api.IUrlBuilder",
   "com.activeviam.logging.QFSFormatter": "com.activeviam.logging.LogRecordFormatter",
   "com.qfs.util.impl.QfsConcurrency": "com.activeviam.tech.concurrency.internal.ConcurrencyUtils",
   "com.qfs.util.impl.QfsArrays": "com.activeviam.tech.core.internal.util.ArrayUtil",
